@@ -23,6 +23,6 @@ namespace MyFirstShop.Table
         [MaxLength(50)]
         public string EmailAdress { get; set; }
 
-        public ICollection<BasketProduct> BasketProduct { get; set; }  
+        public ICollection<BasketProduct> CurremtBasketProduct { get; set; }  
     }
 }

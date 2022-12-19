@@ -72,3 +72,4 @@ C:\Igor_CSharp\MyFirstShop\MyFirstShop\MyFirstShop\bin\Debug\net6.0\runtimes\win
 C:\Igor_CSharp\MyFirstShop\MyFirstShop\MyFirstShop\obj\Debug\net6.0\MyFirstShop.csproj.CopyComplete
 C:\Igor_CSharp\MyFirstShop\MyFirstShop\MyFirstShop\bin\Debug\net6.0\AutoBogus.dll
 C:\Igor_CSharp\MyFirstShop\MyFirstShop\MyFirstShop\bin\Debug\net6.0\Bogus.dll
+C:\Igor_CSharp\MyFirstShop\MyFirstShop\MyFirstShop\bin\Debug\net6.0\RandomNameGeneratorLibrary.dll

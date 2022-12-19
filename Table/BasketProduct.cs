@@ -18,9 +18,11 @@ namespace MyFirstShop.Table
 
         public DateTime CreatedDate { get; set; }   
 
-        public Client Client{ get; set; }
-        public Product Product{ get; set; }
+        public Guid ClientId { get; set; }  
+        public Client CurrentClient{ get; set; }
 
+        public Guid ProductId { get; set; } 
+        public Product CurrentProduct{ get; set; }
 
     }
 }

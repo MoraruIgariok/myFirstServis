@@ -1,5 +1,4 @@
 ﻿using MyFirstShop.DataBase;
-
 using System;
 using Bogus;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Bogus.Extensions;
 using MyFirstShop.Table;
 using System.Collections;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
@@ -19,7 +19,7 @@ namespace MyFirstShop.Services
     public class ManagerTb
     {
         MyFirstShopContext context = new MyFirstShopContext();
-        private bool[] T =new bool[] {true,false};
+       
        
         public void AddClient()
         {
@@ -46,11 +46,11 @@ namespace MyFirstShop.Services
                 context.Products.Add(new Table.Product
                 {
                     Id = Guid.NewGuid(),
-                    Name = new Faker().Person.ToString(),
-                    Descripion = new Faker().Person.ToString(),
-                    IsActive = new Faker().PickRandom(T),
-                    Quantity = new Faker().Person.FirstName.Length,
-                    Price = new Faker().Person.LastName.Length / 5,
+                    Name = new Faker().Commerce.ProductName(),
+                    Descripion = new Faker().Company.CompanyName(),
+                    IsActive = new bool(),
+                    Quantity = new int(),
+                    Price = new decimal(),
                 });
                 context.SaveChanges();
                 i++;
@@ -63,12 +63,13 @@ namespace MyFirstShop.Services
                 context.BasketProducts.Add(new Table.BasketProduct
                 {
                     Id = Guid.NewGuid(),
-                    ShopeName = new Faker().Person.Company.Name.TrimEnd(),
-                    Count = new Faker().Person.LastName.Length,
+                    ShopeName = new Faker().Company.CompanyName(),
+                    Count = new Random().Next(50),
                     CreatedDate = new Faker().Person.DateOfBirth,
-                    Client = new Client(),
-                    Product = new Product()
+                    ClientId = new Client().Id,
+                    ProductId = new Product().Id
                 });
+                
                 context.SaveChanges();
                 i++;
             }

@@ -7,9 +7,9 @@ namespace MyFirstShop
         static void Main(string[] args)
         {
            // ViewesInfo info = new ViewesInfo(); 
-           ManagerTb a = new ManagerTb();
+           //ManagerTb a = new ManagerTb();
             //a.AddProduct();
-            a.AddBaketProduct();
+           // a.AddBaketProduct();
         }
     }
 }
