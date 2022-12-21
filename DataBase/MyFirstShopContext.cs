@@ -23,6 +23,7 @@ namespace MyFirstShop.DataBase
         public DbSet<Product> Products { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
 
         //Connecting to data base.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { 
@@ -34,15 +35,52 @@ namespace MyFirstShop.DataBase
         ///
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ///client
+            modelBuilder.Entity<Client>()
+                .HasKey(c => c.ClientId);
+            modelBuilder.Entity<Client>()
+                .Property(c => new { c.Last_Name, c.First_Name, c.Phone_Number, c.EmailAdress })
+                .HasMaxLength(50);
+            ///product
+            modelBuilder.Entity<Product>()
+               .HasKey(p => p.ProductId);
+            modelBuilder.Entity<Product>()
+               .Property(p => new { p.Name, p.Descripion })
+               .HasMaxLength(100);
+            modelBuilder.Entity<Product>()
+               .Property(p => new { p.Price, p.Quantity })
+               .HasPrecision(10, 2);
+        ///Basket
+            modelBuilder.Entity<Basket>()
+                .HasKey(b => b.BasketId);
+            modelBuilder.Entity<Basket>()
+                .Property(b => b.CodNameBaket)
+                .HasMaxLength(20);
+            modelBuilder.Entity<Basket>()
+                .HasOne(b=>b.CurrentClient)
+                .WithOne(c=>c.CurrentBasket)
+                .HasForeignKey<Basket>(c=>c.ClientId);
+            ///BasketProduct
             modelBuilder.Entity<BasketProduct>()
-               .HasOne<Client>(b => b.CurrentClient)
-               .WithMany(c => c.CurremtBasketProduct)
-               .HasForeignKey(b => b.ClientId);
+                .HasKey(bp => bp.Id);
+            modelBuilder.Entity<BasketProduct>()
+                .Property(bp => bp.Count)
+                .HasPrecision(10, 2);
+            modelBuilder.Entity<BasketProduct>()
+                .HasMany(bp => bp.products)
+                .WithMany(p => p.CurrentBasketProduct);
+            modelBuilder.Entity<BasketProduct>()
+                .HasMany(bp => bp.baskets)
+                .WithMany(b => b.CurrentBasketProduct);
+                
+                
 
-            modelBuilder.Entity<BasketProduct>()
-               .HasOne<Product>(b => b.CurrentProduct)
-               .WithMany(c => c.CurrentBasketProduct)
-               .HasForeignKey(b => b.ProductId);
+                   
+             
+                
+
+
+
 
         }
     }

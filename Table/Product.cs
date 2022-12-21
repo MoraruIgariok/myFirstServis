@@ -11,22 +11,17 @@ namespace MyFirstShop.Table
 {
     public class Product
     {
-        public Guid Id { get; set; }
-
-        [MaxLength(50)]
+        public Guid ProductId { get; set; }
         public string? Name { get; set; }
         public bool IsActive { get; set; }
-
-        [MaxLength(50)]
         public string? Descripion { get; set; }
-
-        public int Quantity { get; set; }
-
-        [Column(TypeName = "decimal(5, 2)")]
+        public decimal Quantity { get; set; }
         public decimal Price { get; set; }
 
-        public ICollection<BasketProduct> CurrentBasketProduct { get; set; }
+
+        public List<BasketProduct> CurrentBasketProduct { get; set; }
 
       
     }
-}
+} 
+

@@ -10,19 +10,13 @@ namespace MyFirstShop.Table
     public class BasketProduct
     {
         public Guid Id { get; set; }
-
-        [MaxLength(50)]
-        public string ShopeName { get; set; }
-
-        public int Count { get; set; }
-
-        public DateTime CreatedDate { get; set; }   
-
-        public Guid ClientId { get; set; }  
-        public Client CurrentClient{ get; set; }
-
         public Guid ProductId { get; set; } 
-        public Product CurrentProduct{ get; set; }
+        public Guid BasketId { get; set; }  
+        public decimal Count { get; set; }
+           //connection
+        public List<Product> products { get; set; }
+        public List<Basket> baskets { get; set; }
+
 
     }
 }
