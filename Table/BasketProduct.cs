@@ -13,7 +13,9 @@ namespace MyFirstShop.Table
         public Guid ProductId { get; set; } 
         public Guid BasketId { get; set; }  
         public decimal Count { get; set; }
-           //connection
+       
+
+        //connection
         public List<Product> products { get; set; }
         public List<Basket> baskets { get; set; }
 
