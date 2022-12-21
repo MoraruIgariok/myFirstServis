@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MyFirstShop.DataBase;
 using Microsoft.Extensions.Options;
-
+using MyFirstShop.DataBase.CreateModel;
 
 namespace MyFirstShop.DataBase
 {
@@ -36,52 +36,13 @@ namespace MyFirstShop.DataBase
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ///client
-            modelBuilder.Entity<Client>()
-                .HasKey(c => c.ClientId);
-            modelBuilder.Entity<Client>()
-                .Property(c => new { c.Last_Name, c.First_Name, c.Phone_Number, c.EmailAdress })
-                .HasMaxLength(50);
+            modelBuilder.ApplyConfiguration(new ClientModel());           
             ///product
-            modelBuilder.Entity<Product>()
-               .HasKey(p => p.ProductId);
-            modelBuilder.Entity<Product>()
-               .Property(p => new { p.Name, p.Descripion })
-               .HasMaxLength(100);
-            modelBuilder.Entity<Product>()
-               .Property(p => new { p.Price, p.Quantity })
-               .HasPrecision(10, 2);
-        ///Basket
-            modelBuilder.Entity<Basket>()
-                .HasKey(b => b.BasketId);
-            modelBuilder.Entity<Basket>()
-                .Property(b => b.CodNameBaket)
-                .HasMaxLength(20);
-            modelBuilder.Entity<Basket>()
-                .HasOne(b=>b.CurrentClient)
-                .WithOne(c=>c.CurrentBasket)
-                .HasForeignKey<Basket>(c=>c.ClientId);
+            modelBuilder.ApplyConfiguration(new ProductModel());
+            ///Basket
+            modelBuilder.ApplyConfiguration(new BasketModel());
             ///BasketProduct
-            modelBuilder.Entity<BasketProduct>()
-                .HasKey(bp => bp.Id);
-            modelBuilder.Entity<BasketProduct>()
-                .Property(bp => bp.Count)
-                .HasPrecision(10, 2);
-            modelBuilder.Entity<BasketProduct>()
-                .HasMany(bp => bp.products)
-                .WithMany(p => p.CurrentBasketProduct);
-            modelBuilder.Entity<BasketProduct>()
-                .HasMany(bp => bp.baskets)
-                .WithMany(b => b.CurrentBasketProduct);
-                
-                
-
-                   
-             
-                
-
-
-
-
+            modelBuilder.ApplyConfiguration(new BasketProductModel());
         }
     }
 }
