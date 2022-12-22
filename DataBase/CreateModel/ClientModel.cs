@@ -17,7 +17,8 @@ namespace MyFirstShop.DataBase.CreateModel
             builder.Property(c => new { c.Last_Name, c.First_Name, c.Phone_Number, c.EmailAdress })
                    .HasMaxLength(50);
             builder.HasOne(c => c.CurrentBasket)
-                   .WithOne(b => b.CurrentClient);
+                   .WithOne(b => b.CurrentClient)
+                   .HasForeignKey<Basket>(b => b.ClientId);
         }
     }
 }

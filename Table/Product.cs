@@ -18,7 +18,7 @@ namespace MyFirstShop.Table
         public decimal Quantity { get; set; }
         public decimal Price { get; set; }
 
-
+        //public BasketProduct BasketProduct { get; set; }    
         public List<BasketProduct> CurrentBasketProduct { get; set; }
 
       

@@ -19,8 +19,10 @@ namespace MyFirstShop.DataBase.CreateModel
                    .HasMaxLength(100);
             builder.Property(p => new { p.Price, p.Quantity })
                    .HasPrecision(10, 2);
+            //////////////////////////////////////////////////////
             builder.HasMany(p => p.CurrentBasketProduct)
-                   .WithMany(bp => bp.products);
+                   .WithOne(bp=>bp.products)
+                   .HasForeignKey(bp => bp.ProductId);
             
                 
             

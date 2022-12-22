@@ -16,8 +16,8 @@ namespace MyFirstShop.Table
        
 
         //connection
-        public List<Product> products { get; set; }
-        public List<Basket> baskets { get; set; }
+        public Product products { get; set; }
+        public Basket baskets { get; set; }
 
 
     }

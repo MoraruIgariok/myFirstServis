@@ -17,9 +17,10 @@ namespace MyFirstShop.DataBase.CreateModel
             builder.HasKey(bp => bp.Id);
             builder.Property(bp => bp.Count)
                    .HasPrecision(10, 2);
-            builder.HasMany(bp => bp.products)
+            builder.HasOne(bp => bp.products)
                    .WithMany(p => p.CurrentBasketProduct);
-            builder.HasMany(bp => bp.baskets)
+            
+            builder.HasOne(bp => bp.baskets)
                    .WithMany(b => b.CurrentBasketProduct);
             
         }

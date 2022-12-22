@@ -12,14 +12,14 @@ namespace MyFirstShop.DataBase.CreateModel
     public class BasketModel:IEntityTypeConfiguration<Basket>
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Basket> builder)
-            {
+        {
 
             builder.HasKey(b => b.BasketId);
             builder.Property(b => b.CodNameBaket)
                    .HasMaxLength(20);
-            builder.HasOne(b => b.CurrentClient)
-                   .WithOne(c => c.CurrentBasket)
-                   .HasForeignKey<Basket>(c => c.ClientId);
+            builder.HasMany(b => b.CurrentBasketProduct)
+                   .WithOne(bp => bp.baskets)
+                   .HasForeignKey(bp => bp.BasketId);
         }
     }
 }
