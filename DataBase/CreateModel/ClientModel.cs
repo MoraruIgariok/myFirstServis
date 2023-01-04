@@ -14,8 +14,7 @@ namespace MyFirstShop.DataBase.CreateModel
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Client> builder)
         {
             builder.HasKey(c => c.ClientId);
-            builder.Property(c => new { c.Last_Name, c.First_Name, c.Phone_Number, c.EmailAdress })
-                   .HasMaxLength(50);
+            
             builder.HasOne(c => c.CurrentBasket)
                    .WithOne(b => b.CurrentClient)
                    .HasForeignKey<Basket>(b => b.ClientId);

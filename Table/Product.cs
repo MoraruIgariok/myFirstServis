@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,10 +13,18 @@ namespace MyFirstShop.Table
     public class Product
     {
         public Guid ProductId { get; set; }
+
+        [MaxLength(100)]
         public string? Name { get; set; }
         public bool IsActive { get; set; }
+
+        [MaxLength(200)]
         public string? Descripion { get; set; }
+
+        [Precision(13,2)]
         public decimal Quantity { get; set; }
+
+        [Precision(13,3)]
         public decimal Price { get; set; }
 
         //public BasketProduct BasketProduct { get; set; }    

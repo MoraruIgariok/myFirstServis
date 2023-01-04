@@ -17,7 +17,7 @@ namespace MyFirstShop.Services
            var clients = context.Clients;
             foreach(Client c in clients)
             {
-                Console.WriteLine("Last name: "+c.Last_Name + " \nFirst name: " + c.First_Name + "\nPhone Number: " + c.Phone_Number + "\nAdress name: " + c.EmailAdress);
+                Console.WriteLine("Last name: "+c.LastName + " \nFirst name: " + c.FirstName + "\nPhone Number: " + c.PhoneNumber + "\nAdress name: " + c.EmailAdress);
             }
             
         }

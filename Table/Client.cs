@@ -10,9 +10,16 @@ namespace MyFirstShop.Table
     public class Client
     {
         public Guid ClientId { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
-        public string? Phone_Number { get; set; }
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+        [MaxLength(50)]
+        public string? PhoneNumber { get; set; }
+
+        [MaxLength(100)]
         public string EmailAdress { get; set; }
 
         public Basket CurrentBasket { get; set; }  

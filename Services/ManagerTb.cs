@@ -28,10 +28,10 @@ namespace MyFirstShop.Services
                 context.Clients.Add(new Table.Client
                 {
 
-                    Id = Guid.NewGuid(),
-                    First_Name = new Faker().Person.FirstName,
-                    Last_Name = new Faker().Person.LastName,
-                    Phone_Number = new Faker().Person.Phone,
+                    ClientId = Guid.NewGuid(),
+                    FirstName = new Faker().Person.FirstName,
+                    LastName = new Faker().Person.LastName,
+                    PhoneNumber = new Faker().Person.Phone,
                     EmailAdress = new Faker().Person.Email
 
                 });
@@ -45,7 +45,7 @@ namespace MyFirstShop.Services
             {
                 context.Products.Add(new Table.Product
                 {
-                    Id = Guid.NewGuid(),
+                    ProductId = Guid.NewGuid(),
                     Name = new Faker().Commerce.ProductName(),
                     Descripion = new Faker().Company.CompanyName(),
                     IsActive = new bool(),
@@ -56,24 +56,8 @@ namespace MyFirstShop.Services
                 i++;
             }
         }
-        public void AddBaketProduct()
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                context.BasketProducts.Add(new Table.BasketProduct
-                {
-                    Id = Guid.NewGuid(),
-                    ShopeName = new Faker().Company.CompanyName(),
-                    Count = new Random().Next(50),
-                    CreatedDate = new Faker().Person.DateOfBirth,
-                    ClientId = new Client().Id,
-                    ProductId = new Product().Id
-                });
-                
-                context.SaveChanges();
-                i++;
-            }
-        } 
+       
+       
 
 
     }

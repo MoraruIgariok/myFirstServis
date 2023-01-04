@@ -8,20 +8,23 @@ using System.Threading.Tasks;
 
 namespace MyFirstShop.Table
 {
-    public class BasketProduct
+    public class Deposit
     {
         public Guid Id { get; set; }
-        public Guid ProductId { get; set; } 
-        public Guid BasketId { get; set; }
+
+        [MaxLength(30)]
+        public string Categori { get; set; }
 
         [Precision(13,2)]
-        public decimal Count { get; set; }
-       
+        public decimal CoutProduct { get; set; }  
+        
+        public DateTime DateImport { get; set; }   
 
-        //connection
-        public Product products { get; set; }
-        public Basket baskets { get; set; }
 
+   
+
+        public  List<DepositShop> depositShopList { get; set; } 
+           
 
     }
 }

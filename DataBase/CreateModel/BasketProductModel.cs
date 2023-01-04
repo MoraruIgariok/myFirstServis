@@ -15,8 +15,7 @@ namespace MyFirstShop.DataBase.CreateModel
         public void Configure(EntityTypeBuilder<BasketProduct> builder)
         {
             builder.HasKey(bp => bp.Id);
-            builder.Property(bp => bp.Count)
-                   .HasPrecision(10, 2);
+            
             builder.HasOne(bp => bp.products)
                    .WithMany(p => p.CurrentBasketProduct);
             

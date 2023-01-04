@@ -17,18 +17,22 @@ namespace MyFirstShop.DataBase
         {
             Database.EnsureDeleted();
 
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Shop> Shops { get; set; }
+        public DbSet<Deposit> Deposites { get; set; }   
+        public DbSet<DepositShop> DepositShops { get; set; }
+
 
         //Connecting to data base.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { 
             optionsBuilder.UseSqlServer(@"Server=127.0.0.1,1423;User ID=sa;Password=MoldovaN92#!;Database=MyFirstDBShop;TrustServerCertificate=True;");
-            optionsBuilder.LogTo(Console.WriteLine);
+            //optionsBuilder.LogTo(Console.WriteLine);
         }
 
         ///schem for One -more
@@ -43,6 +47,12 @@ namespace MyFirstShop.DataBase
             modelBuilder.ApplyConfiguration(new BasketModel());
             ///BasketProduct
             modelBuilder.ApplyConfiguration(new BasketProductModel());
+            ///SHOP 
+            modelBuilder.ApplyConfiguration(new ShopModel());
+            ///Deposit
+            modelBuilder.ApplyConfiguration(new DepositModel());
+            ///DEpositShop
+            modelBuilder.ApplyConfiguration(new DepositShopModel());
         }
     }
 }

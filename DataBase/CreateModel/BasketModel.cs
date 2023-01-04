@@ -15,8 +15,6 @@ namespace MyFirstShop.DataBase.CreateModel
         {
 
             builder.HasKey(b => b.BasketId);
-            builder.Property(b => b.CodNameBaket)
-                   .HasMaxLength(20);
             builder.HasMany(b => b.CurrentBasketProduct)
                    .WithOne(bp => bp.baskets)
                    .HasForeignKey(bp => bp.BasketId);
