@@ -29,6 +29,7 @@ namespace MyFirstShop.Table
 
         //public BasketProduct BasketProduct { get; set; }    
         public List<BasketProduct> CurrentBasketProduct { get; set; }
+        public List<DepositProduct> depositPorductList { get; set; }   
 
       
     }

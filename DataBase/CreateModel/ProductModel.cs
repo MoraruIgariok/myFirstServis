@@ -21,6 +21,9 @@ namespace MyFirstShop.DataBase.CreateModel
             builder.HasMany(p => p.CurrentBasketProduct)
                    .WithOne(bp=>bp.products)
                    .HasForeignKey(bp => bp.ProductId);
+            builder.HasMany(p => p.depositPorductList)
+                   .WithOne(dp => dp.currentProduct)
+                   .HasForeignKey(dp => dp.ProductId);
             
                 
             

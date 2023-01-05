@@ -27,6 +27,7 @@ namespace MyFirstShop.DataBase
         public DbSet<Shop> Shops { get; set; }
         public DbSet<Deposit> Deposites { get; set; }   
         public DbSet<DepositShop> DepositShops { get; set; }
+        public DbSet<DepositProduct> DepositProducts { get; set; }
 
 
         //Connecting to data base.

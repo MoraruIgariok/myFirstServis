@@ -20,11 +20,8 @@ namespace MyFirstShop.Table
         
         public DateTime DateImport { get; set; }   
 
-
-   
-
         public  List<DepositShop> depositShopList { get; set; } 
-           
+        public List<DepositProduct> depositPorductList { get; set; }      
 
     }
 }
