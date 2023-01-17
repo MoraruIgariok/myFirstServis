@@ -22,6 +22,8 @@ namespace MyFirstShop.Table
         [MaxLength(100)]
         public string EmailAdress { get; set; }
 
-        public Basket CurrentBasket { get; set; }  
+        public Basket CurrentBasket { get; set; }
+
+       
     }
 }

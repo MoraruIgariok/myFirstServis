@@ -15,7 +15,7 @@ namespace MyFirstShop.DataBase
     {
         public MyFirstShopContext()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
 
            // Database.EnsureCreated();
         }
