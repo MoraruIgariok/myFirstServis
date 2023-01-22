@@ -7,10 +7,7 @@ namespace MyFirstShop
     {
         static void Main(string[] args)
         {
-            ManagerTb ObjectClient = new ManagerTb();  
-            ViewesInfo VieweObject = new ViewesInfo();
-            RemoveDate removeDate = new RemoveDate(); 
-            EditTable editTable = new EditTable();
+           ClientService myService = new ClientService();
 
             int numberSolution = 0; 
             
@@ -20,18 +17,18 @@ namespace MyFirstShop
 
             numberSolution = Convert.ToInt32(Console.ReadLine());
 
-            switch (numberSolution)
+           /* switch (numberSolution)
             {
-                case 1: ObjectClient.AddProduct();
+                case 1:myService.AddClient();
                     break;
-                case 2:editTable.EditValueForClient();
+                case 2:myService.EditClient();
                     break;
                 case 3: VieweObject.ViewClient();
                     break;
                 case 4: removeDate.RemoveById();
                     break;
             }
-
+           */
          
         }
     }
