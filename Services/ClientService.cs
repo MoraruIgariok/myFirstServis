@@ -13,77 +13,61 @@ namespace MyFirstShop.Services
     public class ClientService : IClientService
     {
         MyFirstShopContext context =new MyFirstShopContext();
+
         public ClientAddResponse AddClient(ClientAddRequest client)
         {
-            context.Clients.Add(new Table.Client
+            Client clientEntity = new Client
             {
-
-                ClientId = Guid.NewGuid(),
-                FirstName = new Faker().Person.FirstName,
-                LastName = new Faker().Person.LastName,
-                PhoneNumber = new Faker().Person.Phone,
-                EmailAdress = new Faker().Person.Email
-
-            });
-            context.SaveChanges();
-
-            return;
+                 EmailAdress = client.EmailAdress,
+                 LastName = client.LastName,
+                 FirstName = client.FirstName,  
+                 PhoneNumber = client.PhoneNumber,  
+            };
+            var Response = context.Add<Client>(clientEntity);
+            context.SaveChanges();  
+            return new ClientAddResponse
+            {
+                FirstName = clientEntity.FirstName,
+                LastName = clientEntity.LastName,    
+            };
         }
 
-       public ClientEditResponse EditClient(ClientEditRequest client)
+        public ClientEditResponse EditClient(ClientEditRequest client)
         {
-            var editValue = new Client() { 
-                ClientId = new Guid("306F5992-4469-4A92-B025-18797F6FCD27"), 
-                LastName = "Legros" 
+            Client firstClient = context.Clients.First();
+            Console.WriteLine("value for update is ", firstClient.LastName);
+            //if(firstClient != null)
+            //{
+            //    firstClient.LastName = client.LastName;
+            //    firstClient.PhoneNumber = client.PhoneNumber;
+            //    firstClient.EmailAdress = client.EmailAdress;
+            //    context.SaveChanges();
+            //}
+
+
+            return new ClientEditResponse
+            {
+                EmailAdress = firstClient.EmailAdress,
+                FirstName = firstClient.FirstName,
+                LastName = firstClient.LastName,
+                PhoneNumber = firstClient.PhoneNumber
             };
 
-            editValue.FirstName = "Moraru";
-            editValue.LastName = "Igor";
-
-            context.Update<Client>(editValue);
-            context.SaveChanges();
-            return editValue;
         }
 
         public ClientGetResponse GetClient(ClientGetRequest client)
         {
-            var clients = context.Clients;
-            foreach (Client c in clients)
-            {
-                Console.WriteLine("Last name: " + c.LastName + " \nFirst name: " + c.FirstName + "\nPhone Number: " + c.PhoneNumber + "\nAdress name: " + c.EmailAdress);
-            }
-            return clients;
+            throw new NotImplementedException();
         }
 
         public Client GetClientById(ClientGetByIdRequest client)
         {
-            Guid IdClient = Guid.NewGuid();
-            var clients = new Client() { ClientId = IdClient };
-
-
-            Console.WriteLine("Indicate the Id to be deleted form Client table");
-            var NewValue = Console.ReadLine();
-
-            IdClient = Guid.Parse(NewValue); try
-            {
-                context.Remove<Client>(clients);
-                context.SaveChanges();
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("There is not such data {0}", e);
-            }
-            return clients;
+            throw new NotImplementedException();
         }
+
     }
 
-    public interface IClientService
-    {
-        public ClientAddResponse AddClient(ClientAddRequest client);
-        public ClientEditResponse EditClient(ClientEditRequest client);
-        public ClientGetResponse GetClient(ClientGetRequest client);
-        public Client GetClientById(ClientGetByIdRequest client);
-    }
+   
 
 
     public class ClientAddRequest
@@ -103,16 +87,22 @@ namespace MyFirstShop.Services
 
     public class ClientAddResponse
     {
-        public Guid ClientId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string? PhoneNumber { get; set; }
-        public string EmailAdress { get; set; }
+       
+        public string GetFullName() 
+        {
+           return $"Clientu {FirstName} {LastName} a fost adaugat";
+            
+        }
+        
+        
 
     }
 
     public class ClientEditRequest
     {
+        public Guid Id { get; set; }   
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string? PhoneNumber { get; set; }
@@ -121,6 +111,15 @@ namespace MyFirstShop.Services
 
     public class ClientEditResponse
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string EmailAdress { get; set; }
+
+        public string GetEditValue()
+        {
+            return $"New value is {FirstName} {LastName} has Phone - {PhoneNumber} and  email - {EmailAdress} ";
+        }
     }
 
     public class ClientGetRequest

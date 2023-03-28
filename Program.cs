@@ -1,4 +1,6 @@
-﻿using MyFirstShop.Services;
+﻿using Azure;
+using MyFirstShop.Services;
+using System;
 using System.Net.Sockets;
 
 namespace MyFirstShop
@@ -7,29 +9,27 @@ namespace MyFirstShop
     {
         static void Main(string[] args)
         {
-           ClientService myService = new ClientService();
+            ClientService obj = new();
 
-            int numberSolution = 0; 
-            
-
-            Console.WriteLine("Hello, What do you want to do?");
-            Console.WriteLine("1.Add Value.\n2.Edit Value.\n3.View Value.\n4.Remove Value.");
-
-            numberSolution = Convert.ToInt32(Console.ReadLine());
-
-           /* switch (numberSolution)
+            var responsEdit = obj.EditClient(new ClientEditRequest
             {
-                case 1:myService.AddClient();
-                    break;
-                case 2:myService.EditClient();
-                    break;
-                case 3: VieweObject.ViewClient();
-                    break;
-                case 4: removeDate.RemoveById();
-                    break;
-            }
-           */
-         
+                FirstName = "Moraru"
+                
+            });
+            Console.WriteLine(responsEdit.GetEditValue());
+
+
+            //    ClientService obj = new();
+            //    Console.WriteLine("Write info for Client(FirstName/LastName/EmailAdress/PhoneNumber)\n");
+            //    var respons = obj.AddClient(new ClientAddRequest
+            //    {
+            //        FirstName = Console.ReadLine(),
+            //        LastName = Console.ReadLine(),
+            //        EmailAdress = Console.ReadLine(),
+            //        PhoneNumber = Console.ReadLine()
+            //    });
+
+            //    Console.WriteLine(respons.GetFullName());
         }
     }
 }
